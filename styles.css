@@ -26,18 +26,20 @@ img{
     width: 80%;
     margin: auto;
     background-color: aqua;
-    transition: transform 1s;
 }
 
 /*     CLASES AUX   */
 
 .containerSalida{
-    transform: translateX(200%);
+    animation: salidAnimation 1s ease-in-out forwards;
 }
 
 .containerEnter {
-    transform: translateX(-200%);
     animation: enterAnimation 1s ease-in-out forwards;
+}
+
+.crearPantallaPrincial{
+    animation: pantallaPrincipalAnimation 1s ease-in-out forwards;
 }
 
 @keyframes enterAnimation {
@@ -46,5 +48,23 @@ img{
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes salidAnimation {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(200%);
+    }
+}
+
+@keyframes pantallaPrincipalAnimation {
+    from{
+        transform: translateY(0);
+    }
+    to{
+         transform: translateY(200%);
     }
 }
