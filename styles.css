@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto 0;
+    
+    border: 2px solid;
+    overflow: hidden;
+}
+
+img{
+    width: 200px;
+}
+
+.title{
+    text-align: center;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    background-color: aqua;
+    transition: transform 1s;
+}
+
+/*     CLASES AUX   */
+
+.containerSalida{
+    transform: translateX(200%);
+}
+
+.containerEnter {
+    transform: translateX(-200%);
+    animation: enterAnimation 1s ease-in-out forwards;
+}
+
+@keyframes enterAnimation {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
