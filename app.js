@@ -1,20 +1,21 @@
 const container = document.querySelector('.container');
 
 function crearPantallaPrincipal(){
-    container.classList.add('pantallaPrincipalAnimation');
+    container.textContent = ``;
+    container.insertAdjacentHTML('beforeend', `
+        <figure class="container__figure">
+            <img src="img/portada.jpg" alt="ahorcado">
+        </figure>
+        <div class="container__buttons">
+            <button id="maquina">Maquina</button>
+            <button id="otroJugador">Otro jugador</button>
+        </div>
+    `)
+    
+    container.classList.add('creacionPantallaPrincipal');
 
     setTimeout(function(){
-        container.innerHTML = ``;
-        container.insertAdjacentHTML('beforeend', `
-            <figure class="container__figure">
-                <img src="img/ahorcado_0.png" alt="ahorcado">
-            </figure>
-            <div class="container__buttons">
-                <button id="maquina">Maquina</button>
-                <button id="otroJugador">Otro jugador</button>
-            </div>
-        `)
-        container.classList.remove('pantallaPrincipalAnimation')
+        container.classList.remove('creacionPantallaPrincipal');
     }, 1000)
 }
 
@@ -35,18 +36,20 @@ container.addEventListener('click', function(e){
             `
         }
 
-        container.classList.add('containerSalida');
+        container.classList.add('centroADerecha');
 
         setTimeout(function () {
-            container.innerHTML = ``;
+            container.textContent = ``;
             container.insertAdjacentHTML('beforeend', html)
-            container.classList.remove('containerSalida');
-            container.classList.add('containerEnter');
+            container.classList.remove('centroADerecha');
+            container.classList.add('izquierdaACentro');
         }, 1000); 
 
         setTimeout(function () {
-            container.classList.remove('containerEnter');
+            container.classList.remove('izquierdaACentro');
         }, 2000);
 
     }
 })
+
+crearPantallaPrincipal()
