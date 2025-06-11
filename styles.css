@@ -18,6 +18,28 @@ img{
     width: 200px;
 }
 
+input{
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.container__word {
+    display: flex;
+    gap: 10px; /* Espaciado entre letras */
+}
+
+.container__word .letter {
+    font-size: 24px;
+    text-transform: uppercase;
+    width: 20px; /* Ancho fijo para alineación */
+    text-align: center;
+}
+
+input:disabled{
+    cursor: no-drop;
+}
+
 .title{
     text-align: center;
 }
