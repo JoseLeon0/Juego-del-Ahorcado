@@ -1,4 +1,24 @@
 const container = document.querySelector('.container');
+let palabraSeleccionada = null
+
+function generarNumeroAleatorio(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+
+    return Math.floor(Math.random() * (max - min )) + min;
+}
+
+function displayWord(word) {
+    const container = document.querySelector('.container__word');
+    container.innerHTML = ''; // Limpia cualquier contenido previo
+
+    word.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? ' ' : '_'; // Espacio en blanco o guion bajo
+        span.classList.add('letter'); // Clase opcional para estilos
+        container.appendChild(span);
+    });
+}
 
 function crearPantallaPrincipal(){
     container.textContent = ``;
@@ -20,16 +40,14 @@ function crearPantallaPrincipal(){
 }
 
 container.addEventListener('click', function(e){
-    const elemto = e.target
+    const elemento = e.target
 
-    if(elemto.matches('button')){
+    if(elemento.matches('button')){
         let html = `
         <figure class="container__figure">
             <img src="img/ahorcado_6.png" alt="Ahorcado">
         </figure>
-        <div class="container__word">
-
-        </div>
+        <div class="container__word"></div>
         <div class="container__keys">
             <input type="button" value="q">
             <input type="button" value="w">
@@ -60,12 +78,17 @@ container.addEventListener('click', function(e){
             <input type="button" value="m">
         </div>
         `
-
         container.classList.add('centroADerecha');
 
         setTimeout(function () {
             container.textContent = ``;
             container.insertAdjacentHTML('beforeend', html)
+
+            const numero = generarNumeroAleatorio(0, palabras.length)
+            palabraSeleccionada = palabras[numero]
+            console.log(palabraSeleccionada)
+            displayWord(palabraSeleccionada)
+
             container.classList.remove('centroADerecha');
             container.classList.add('izquierdaACentro');
         }, 1000); 
@@ -74,6 +97,24 @@ container.addEventListener('click', function(e){
             container.classList.remove('izquierdaACentro');
         }, 2000);
 
+    }else if(elemento.matches('input')){
+        const valor = elemento.value
+
+        if(palabraSeleccionada.includes(valor)){
+            elemento.style.backgroundColor = "green"
+
+            const letras = document.querySelectorAll('.container__word .letter');
+            palabraSeleccionada.split('').forEach((char, index) => {
+                if (char === valor) {
+                    letras[index].textContent = valor;
+                }
+            });
+
+        }else{
+            elemento.style.backgroundColor = "crimson"
+        }
+
+        elemento.setAttribute('disabled', true)
     }
 })
 
