@@ -1,15 +1,67 @@
 const container = document.querySelector('.container');
-const modal = document.querySelector('dialog:nth-of-type(2)')
-const buttonCloseModal = document.querySelector('.close__modal')
+const modalPalabra = document.querySelector('dialog')
+const modalResultado = document.querySelector('dialog:nth-of-type(2)')
+const buttonCloseModalResultado = document.querySelector('#modalResultado')
+const buttonCloseModalPalabra = document.querySelector('#modalPalabra')
 
 let palabraSeleccionada = null
 let contadorImg = 6
 
-function generarNumeroAleatorio(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
+function crearInterfazJuego(palabraUser){
+    let html = `
+    <figure class="container__figure">
+        <img src="img/ahorcado_6.png" alt="Ahorcado">
+    </figure>
+    <div class="container__word"></div>
+    <div class="container__keys">
+        <input type="button" value="q">
+        <input type="button" value="w">
+        <input type="button" value="e">
+        <input type="button" value="r">
+        <input type="button" value="t">
+        <input type="button" value="y">
+        <input type="button" value="u">
+        <input type="button" value="i">
+        <input type="button" value="o">
+        <input type="button" value="p">
+        <input type="button" value="a">
+        <input type="button" value="s">
+        <input type="button" value="d">
+        <input type="button" value="f">
+        <input type="button" value="g">
+        <input type="button" value="h">
+        <input type="button" value="j">
+        <input type="button" value="k">
+        <input type="button" value="l">
+        <input type="button" value="ñ">
+        <input type="button" value="z">
+        <input type="button" value="x">
+        <input type="button" value="c">
+        <input type="button" value="v">
+        <input type="button" value="b">
+        <input type="button" value="n">
+        <input type="button" value="m">
+    </div>
+    `
+    container.classList.add('centroADerecha');
+    setTimeout(function () {
+        container.textContent = ``;
+        container.insertAdjacentHTML('beforeend', html)
 
-    return Math.floor(Math.random() * (max - min )) + min;
+        if(palabraUser)
+            palabraSeleccionada = palabraUser
+        else{
+            const numero = generarNumeroAleatorio(0, palabras.length)
+            palabraSeleccionada = palabras[numero]
+        }
+        console.log(palabraSeleccionada)
+        displayWord(palabraSeleccionada)
+        container.classList.remove('centroADerecha');
+        container.classList.add('izquierdaACentro');
+    }, 1000); 
+    setTimeout(function () {
+        container.classList.remove('izquierdaACentro');
+    }, 2000);
 }
 
 function displayWord(word) {
@@ -43,69 +95,27 @@ function crearPantallaPrincipal(){
     }, 1000)
 }
 
-buttonCloseModal.addEventListener('click', function(){
-    modal.close()
+buttonCloseModalResultado.addEventListener('click', function(){
+    modalResultado.close()
     crearPantallaPrincipal()
+})
+
+buttonCloseModalPalabra.addEventListener('click', function(){
+    const palabraUser = document.querySelector('input[type="text"]').value
+    modalPalabra.close()
+    document.querySelector('input[type="text"]').value = ""
+    crearInterfazJuego(palabraUser)
 })
 
 container.addEventListener('click', function(e){
     const elemento = e.target
 
     if(elemento.matches('button')){
-        let html = `
-        <figure class="container__figure">
-            <img src="img/ahorcado_6.png" alt="Ahorcado">
-        </figure>
-        <div class="container__word"></div>
-        <div class="container__keys">
-            <input type="button" value="q">
-            <input type="button" value="w">
-            <input type="button" value="e">
-            <input type="button" value="r">
-            <input type="button" value="t">
-            <input type="button" value="y">
-            <input type="button" value="u">
-            <input type="button" value="i">
-            <input type="button" value="o">
-            <input type="button" value="p">
-            <input type="button" value="a">
-            <input type="button" value="s">
-            <input type="button" value="d">
-            <input type="button" value="f">
-            <input type="button" value="g">
-            <input type="button" value="h">
-            <input type="button" value="j">
-            <input type="button" value="k">
-            <input type="button" value="l">
-            <input type="button" value="ñ">
-            <input type="button" value="z">
-            <input type="button" value="x">
-            <input type="button" value="c">
-            <input type="button" value="v">
-            <input type="button" value="b">
-            <input type="button" value="n">
-            <input type="button" value="m">
-        </div>
-        `
-        container.classList.add('centroADerecha');
 
-        setTimeout(function () {
-            container.textContent = ``;
-            container.insertAdjacentHTML('beforeend', html)
-
-            const numero = generarNumeroAleatorio(0, palabras.length)
-            palabraSeleccionada = palabras[numero]
-            console.log(palabraSeleccionada)
-            displayWord(palabraSeleccionada)
-
-            container.classList.remove('centroADerecha');
-            container.classList.add('izquierdaACentro');
-        }, 1000); 
-
-        setTimeout(function () {
-            container.classList.remove('izquierdaACentro');
-        }, 2000);
-
+        if(elemento.matches('#otroJugador'))
+            modalPalabra.showModal()
+        else
+            crearInterfazJuego()
     }else if(elemento.matches('input')){
         const valor = elemento.value
 
@@ -125,11 +135,11 @@ container.addEventListener('click', function(e){
 
             if(contadorImg == 0){
                 contadorImg = 6
-                modal.querySelector('h2').textContent = "¡Oh no!"
-                modal.querySelector('p:first-of-type').textContent = "Has perdido"
-                modal.querySelector('p:nth-of-type(2)').textContent = "Animo, vuelve a intentarlo"
+                modalResultado.querySelector('h2').textContent = "¡Oh no!"
+                modalResultado.querySelector('p:first-of-type').textContent = "Has perdido"
+                modalResultado.querySelector('p:nth-of-type(2)').textContent = "Animo, vuelve a intentarlo"
 
-                modal.showModal()
+                modalResultado.showModal()
             }
 
             const imgAhorcado = document.querySelector('.container__figure img')
