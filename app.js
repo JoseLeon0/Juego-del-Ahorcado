@@ -1,4 +1,7 @@
 const container = document.querySelector('.container');
+const modal = document.querySelector('dialog:nth-of-type(2)')
+const buttonCloseModal = document.querySelector('.close__modal')
+
 let palabraSeleccionada = null
 let contadorImg = 6
 
@@ -39,6 +42,11 @@ function crearPantallaPrincipal(){
         container.classList.remove('creacionPantallaPrincipal');
     }, 1000)
 }
+
+buttonCloseModal.addEventListener('click', function(){
+    modal.close()
+    crearPantallaPrincipal()
+})
 
 container.addEventListener('click', function(e){
     const elemento = e.target
@@ -114,6 +122,16 @@ container.addEventListener('click', function(e){
         }else{
             elemento.style.backgroundColor = "crimson"
             contadorImg--
+
+            if(contadorImg == 0){
+                contadorImg = 6
+                modal.querySelector('h2').textContent = "¡Oh no!"
+                modal.querySelector('p:first-of-type').textContent = "Has perdido"
+                modal.querySelector('p:nth-of-type(2)').textContent = "Animo, vuelve a intentarlo"
+
+                modal.showModal()
+            }
+
             const imgAhorcado = document.querySelector('.container__figure img')
             imgAhorcado.setAttribute('src', `img/ahorcado_${contadorImg}.png`)
         }
