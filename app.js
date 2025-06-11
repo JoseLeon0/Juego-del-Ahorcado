@@ -1,5 +1,6 @@
 const container = document.querySelector('.container');
 let palabraSeleccionada = null
+let contadorImg = 6
 
 function generarNumeroAleatorio(min, max) {
     min = Math.ceil(min)
@@ -112,6 +113,9 @@ container.addEventListener('click', function(e){
 
         }else{
             elemento.style.backgroundColor = "crimson"
+            contadorImg--
+            const imgAhorcado = document.querySelector('.container__figure img')
+            imgAhorcado.setAttribute('src', `img/ahorcado_${contadorImg}.png`)
         }
 
         elemento.setAttribute('disabled', true)
