@@ -1,20 +1,80 @@
-const buttonMaquina = document.querySelector('#maquina');
-const buttonOtroJugador = document.querySelector('#otroJugador');
 const container = document.querySelector('.container');
 
-buttonMaquina.addEventListener('click', function () {
-    container.classList.add('containerSalida');
+function crearPantallaPrincipal(){
+    container.textContent = ``;
+    container.insertAdjacentHTML('beforeend', `
+        <figure class="container__figure">
+            <img src="img/portada.jpg" alt="ahorcado">
+        </figure>
+        <div class="container__buttons">
+            <button id="maquina">Maquina</button>
+            <button id="otroJugador">Otro jugador</button>
+        </div>
+    `)
+    
+    container.classList.add('creacionPantallaPrincipal');
 
-    setTimeout(function () {
-        container.innerHTML = `
-            <h2>Nuevo contenido</h2>
-            <p>Este es un párrafo</p>
-        `;
-        container.classList.remove('containerSalida');
-        container.classList.add('containerEnter');
-    }, 1000); 
+    setTimeout(function(){
+        container.classList.remove('creacionPantallaPrincipal');
+    }, 1000)
+}
 
-    setTimeout(function () {
-        container.classList.remove('containerEnter');
-    }, 2000);
-});
+container.addEventListener('click', function(e){
+    const elemto = e.target
+
+    if(elemto.matches('button')){
+        let html = `
+        <figure class="container__figure">
+            <img src="img/ahorcado_6.png" alt="Ahorcado">
+        </figure>
+        <div class="container__word">
+
+        </div>
+        <div class="container__keys">
+            <input type="button" value="q">
+            <input type="button" value="w">
+            <input type="button" value="e">
+            <input type="button" value="r">
+            <input type="button" value="t">
+            <input type="button" value="y">
+            <input type="button" value="u">
+            <input type="button" value="i">
+            <input type="button" value="o">
+            <input type="button" value="p">
+            <input type="button" value="a">
+            <input type="button" value="s">
+            <input type="button" value="d">
+            <input type="button" value="f">
+            <input type="button" value="g">
+            <input type="button" value="h">
+            <input type="button" value="j">
+            <input type="button" value="k">
+            <input type="button" value="l">
+            <input type="button" value="ñ">
+            <input type="button" value="z">
+            <input type="button" value="x">
+            <input type="button" value="c">
+            <input type="button" value="v">
+            <input type="button" value="b">
+            <input type="button" value="n">
+            <input type="button" value="m">
+        </div>
+        `
+
+        container.classList.add('centroADerecha');
+
+        setTimeout(function () {
+            container.textContent = ``;
+            container.insertAdjacentHTML('beforeend', html)
+            container.classList.remove('centroADerecha');
+            container.classList.add('izquierdaACentro');
+        }, 1000); 
+
+        setTimeout(function () {
+            container.classList.remove('izquierdaACentro');
+        }, 2000);
+
+    }
+})
+
+crearPantallaPrincipal()
