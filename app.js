@@ -100,7 +100,7 @@ function crearPantallaPrincipal(){
     container.textContent = ``;
     container.insertAdjacentHTML('beforeend', `
         <figure class="container__figure">
-            <img src="img/portada.jpg" alt="ahorcado">
+            <img src="img/portada2.png" alt="ahorcado">
         </figure>
         <div class="container__buttons">
             <button id="maquina">Maquina</button>
