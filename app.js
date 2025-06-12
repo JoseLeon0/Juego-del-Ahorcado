@@ -7,6 +7,26 @@ const buttonCloseModalPalabra = document.querySelector('#modalPalabra')
 let palabraSeleccionada = null
 let contadorImg = 6
 
+let textosModal = {
+    victoria : [
+        '¡Felicidades!', 'Has acertado la palabra' 
+    ], 
+    derrota : [
+        '¡Oh no!', 'Mas suerte la proxima vez amig@'
+    ]
+}
+
+//True -> Gana. False -> Pierde
+function creacionContenidoModalRespuesta(value){
+    if(value){
+        modalResultado.querySelector('h2').textContent = textosModal.victoria[0]
+        modalResultado.querySelector('p').textContent = textosModal.victoria[1]
+    }else{
+        modalResultado.querySelector('h2').textContent = textosModal.derrota[0]
+        modalResultado.querySelector('p').textContent = textosModal.derrota[1]
+    }
+}
+
 function crearInterfazJuego(palabraUser){
     let html = `
     <figure class="container__figure">
@@ -129,16 +149,20 @@ container.addEventListener('click', function(e){
                 }
             });
 
+            const todasReveladas = Array.from(letras).every(letra => letra.textContent !== '_');
+            if (todasReveladas) {
+                contadorImg = 6
+                creacionContenidoModalRespuesta(true)
+                modalResultado.showModal()
+            }
+
         }else{
             elemento.style.backgroundColor = "crimson"
             contadorImg--
 
             if(contadorImg == 0){
                 contadorImg = 6
-                modalResultado.querySelector('h2').textContent = "¡Oh no!"
-                modalResultado.querySelector('p:first-of-type').textContent = "Has perdido"
-                modalResultado.querySelector('p:nth-of-type(2)').textContent = "Animo, vuelve a intentarlo"
-
+                creacionContenidoModalRespuesta(false)
                 modalResultado.showModal()
             }
 
