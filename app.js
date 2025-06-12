@@ -67,6 +67,7 @@ function crearInterfazJuego(palabraUser){
     setTimeout(function () {
         container.textContent = ``;
         container.insertAdjacentHTML('beforeend', html)
+        container.style.gap = '2rem'
 
         if(palabraUser)
             palabraSeleccionada = palabraUser
@@ -157,7 +158,7 @@ container.addEventListener('click', function(e){
             }
 
         }else{
-            elemento.style.backgroundColor = "crimson"
+            elemento.style.backgroundColor = "rgba(220, 20, 60, 0.65)"
             contadorImg--
 
             if(contadorImg == 0){
