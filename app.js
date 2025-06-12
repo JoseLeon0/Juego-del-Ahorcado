@@ -109,10 +109,10 @@ function crearPantallaPrincipal(){
         </div>
     `)
     
-    container.classList.add('creacionPantallaPrincipal');
+    container.classList.add('animacionArribaCentro');
 
     setTimeout(function(){
-        container.classList.remove('creacionPantallaPrincipal');
+        container.classList.remove('animacionArribaCentro');
     }, 1000)
 }
 
@@ -123,9 +123,14 @@ buttonCloseModalResultado.addEventListener('click', function(){
 
 buttonCloseModalPalabra.addEventListener('click', function(){
     const palabraUser = document.querySelector('input[type="text"]').value
-    modalPalabra.close()
-    document.querySelector('input[type="text"]').value = ""
-    crearInterfazJuego(palabraUser)
+    
+    modalPalabra.classList.add('animacionCentroArriba')
+    setTimeout(function(){
+        modalPalabra.classList.remove('animacionCentroArriba')
+        modalPalabra.close()
+        document.querySelector('input[type="text"]').value = ""
+        crearInterfazJuego(palabraUser)
+    }, 1000)
 })
 
 container.addEventListener('click', function(e){
@@ -133,8 +138,13 @@ container.addEventListener('click', function(e){
 
     if(elemento.matches('button')){
 
-        if(elemento.matches('#otroJugador'))
+        if(elemento.matches('#otroJugador')){
             modalPalabra.showModal()
+            modalPalabra.classList.add('animacionArribaCentro');
+            setTimeout(function(){
+                modalPalabra.classList.remove('animacionArribaCentro');
+            }, 1000)
+        }
         else
             crearInterfazJuego()
     }else if(elemento.matches('input')){

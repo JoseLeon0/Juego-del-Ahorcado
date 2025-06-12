@@ -1,0 +1,1 @@
+cuando se juege con otro jugador, verificar que si se alla ingresado una palabra

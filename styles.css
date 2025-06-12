@@ -95,6 +95,34 @@ input:disabled{
 
 }
 
+dialog{
+    inset: 0;
+    margin: auto;
+    padding: 2rem;
+    border: 2px solid;
+    border-radius: 10px;
+
+    & input{
+        display: block;
+        width: 100%;
+        border: 1px solid;
+        padding: 10px;
+        outline: none;
+        font-weight: normal;
+        margin-bottom: 1rem;
+    }
+
+    & button{
+        display: block;
+        margin: auto;
+        color: white;
+    }
+}
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
 @starting-style{
     .container{
         transform: translateY(-150%);
@@ -110,8 +138,11 @@ input:disabled{
 .izquierdaACentro {
     animation: leftAnimation 1s ease-in-out forwards;
 }
-.creacionPantallaPrincipal{
-    animation: pantallaPrincipal 1s forwards;
+.animacionArribaCentro{
+    animation: animacionCentro 1s forwards;
+}
+.animacionCentroArriba{
+    animation: animacionArriba 1s forwards;
 }
 
 @keyframes leftAnimation {
@@ -130,11 +161,19 @@ input:disabled{
         transform: translateX(200%);
     }
 }
-@keyframes pantallaPrincipal {
+@keyframes animacionCentro {
     from{
         transform: translateY(-150%);
     }
     to{
         transform: translateY(0);
+    }
+}
+@keyframes animacionArriba {
+     from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-290%);
     }
 }
