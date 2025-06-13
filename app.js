@@ -68,7 +68,7 @@ function crearInterfazJuego(palabraUser){
         container.textContent = ``;
         container.insertAdjacentHTML('beforeend', html)
         container.style.gap = '2rem'
-
+        
         if(palabraUser)
             palabraSeleccionada = palabraUser
         else{
@@ -77,11 +77,13 @@ function crearInterfazJuego(palabraUser){
         }
         console.log(palabraSeleccionada)
         displayWord(palabraSeleccionada)
-        container.classList.remove('centroADerecha');
+        container.classList.remove('centroADerecha')
         container.classList.add('izquierdaACentro');
     }, 1000); 
     setTimeout(function () {
         container.classList.remove('izquierdaACentro');
+        //document.documentElement.style.setProperty('valorInicialX', '0')
+        //document.documentElement.style.setProperty('valorFinalX', '200%')
     }, 2000);
 }
 
@@ -109,10 +111,10 @@ function crearPantallaPrincipal(){
         </div>
     `)
     
-    container.classList.add('animacionArribaCentro');
+    container.classList.add('animacionEjeY');
 
     setTimeout(function(){
-        container.classList.remove('animacionArribaCentro');
+        container.classList.remove('animacionEjeY');
     }, 1000)
 }
 
@@ -124,9 +126,11 @@ buttonCloseModalResultado.addEventListener('click', function(){
 buttonCloseModalPalabra.addEventListener('click', function(){
     const palabraUser = document.querySelector('input[type="text"]').value
     
-    modalPalabra.classList.add('animacionCentroArriba')
+    modalPalabra.classList.add('animacionEjeY')
     setTimeout(function(){
-        modalPalabra.classList.remove('animacionCentroArriba')
+        modalPalabra.classList.remove('animacionEjeY')
+        document.documentElement.style.setProperty('--valorInicialY', '-150%')
+        document.documentElement.style.setProperty('--valorFinalY', '0')
         modalPalabra.close()
         document.querySelector('input[type="text"]').value = ""
         crearInterfazJuego(palabraUser)
@@ -140,9 +144,11 @@ container.addEventListener('click', function(e){
 
         if(elemento.matches('#otroJugador')){
             modalPalabra.showModal()
-            modalPalabra.classList.add('animacionArribaCentro');
+            modalPalabra.classList.add('animacionEjeY');
             setTimeout(function(){
-                modalPalabra.classList.remove('animacionArribaCentro');
+                modalPalabra.classList.remove('animacionEjeY');
+                document.documentElement.style.setProperty('--valorInicialY', '0')
+                document.documentElement.style.setProperty('--valorFinalY', '-290%')
             }, 1000)
         }
         else
