@@ -5,6 +5,13 @@
     font-weight: bold;
 }
 
+:root{
+    --valorInicialY: -150%;
+    --valorFinalY: 0;
+    --valorInicialX: 0;
+    --valorFinalX: 200%;
+}
+
 body{
     height: 100vh;
     width: 90%;
@@ -138,11 +145,8 @@ dialog::backdrop{
 .izquierdaACentro {
     animation: leftAnimation 1s ease-in-out forwards;
 }
-.animacionArribaCentro{
-    animation: animacionCentro 1s forwards;
-}
-.animacionCentroArriba{
-    animation: animacionArriba 1s forwards;
+.animacionEjeY{
+    animation: ejeY 1s forwards;
 }
 
 @keyframes leftAnimation {
@@ -161,19 +165,11 @@ dialog::backdrop{
         transform: translateX(200%);
     }
 }
-@keyframes animacionCentro {
+@keyframes ejeY {
     from{
-        transform: translateY(-150%);
+        transform: translateY(var(--valorInicialY));
     }
     to{
-        transform: translateY(0);
-    }
-}
-@keyframes animacionArriba {
-     from{
-        transform: translateY(0);
-    }
-    to{
-        transform: translateY(-290%);
+        transform: translateY(var(--valorFinalY));
     }
 }
