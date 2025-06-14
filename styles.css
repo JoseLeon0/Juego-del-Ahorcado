@@ -140,6 +140,23 @@ dialog::backdrop{
     }
 }
 
+@media screen and (width >= 600px){
+    .container__word{
+        justify-content: center;
+    }
+
+    .container__keys{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 5px;
+
+        & input{
+            margin: unset
+        }
+    }
+}
+
 
 /*     CLASES AUX   */
 
