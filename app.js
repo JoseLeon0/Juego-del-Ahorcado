@@ -67,7 +67,8 @@ function crearInterfazJuego(palabraUser){
     setTimeout(function () {
         container.textContent = ``;
         container.insertAdjacentHTML('beforeend', html)
-
+        container.style.gap = '2rem'
+        
         if(palabraUser)
             palabraSeleccionada = palabraUser
         else{
@@ -76,11 +77,13 @@ function crearInterfazJuego(palabraUser){
         }
         console.log(palabraSeleccionada)
         displayWord(palabraSeleccionada)
-        container.classList.remove('centroADerecha');
+        container.classList.remove('centroADerecha')
         container.classList.add('izquierdaACentro');
     }, 1000); 
     setTimeout(function () {
         container.classList.remove('izquierdaACentro');
+        //document.documentElement.style.setProperty('valorInicialX', '0')
+        //document.documentElement.style.setProperty('valorFinalX', '200%')
     }, 2000);
 }
 
@@ -100,7 +103,7 @@ function crearPantallaPrincipal(){
     container.textContent = ``;
     container.insertAdjacentHTML('beforeend', `
         <figure class="container__figure">
-            <img src="img/portada.jpg" alt="ahorcado">
+            <img src="img/portada2.png" alt="ahorcado">
         </figure>
         <div class="container__buttons">
             <button id="maquina">Maquina</button>
@@ -108,10 +111,10 @@ function crearPantallaPrincipal(){
         </div>
     `)
     
-    container.classList.add('creacionPantallaPrincipal');
+    container.classList.add('animacionEjeY');
 
     setTimeout(function(){
-        container.classList.remove('creacionPantallaPrincipal');
+        container.classList.remove('animacionEjeY');
     }, 1000)
 }
 
@@ -122,9 +125,16 @@ buttonCloseModalResultado.addEventListener('click', function(){
 
 buttonCloseModalPalabra.addEventListener('click', function(){
     const palabraUser = document.querySelector('input[type="text"]').value
-    modalPalabra.close()
-    document.querySelector('input[type="text"]').value = ""
-    crearInterfazJuego(palabraUser)
+    
+    modalPalabra.classList.add('animacionEjeY')
+    setTimeout(function(){
+        modalPalabra.classList.remove('animacionEjeY')
+        document.documentElement.style.setProperty('--valorInicialY', '-150%')
+        document.documentElement.style.setProperty('--valorFinalY', '0')
+        modalPalabra.close()
+        document.querySelector('input[type="text"]').value = ""
+        crearInterfazJuego(palabraUser)
+    }, 1000)
 })
 
 container.addEventListener('click', function(e){
@@ -132,8 +142,15 @@ container.addEventListener('click', function(e){
 
     if(elemento.matches('button')){
 
-        if(elemento.matches('#otroJugador'))
+        if(elemento.matches('#otroJugador')){
             modalPalabra.showModal()
+            modalPalabra.classList.add('animacionEjeY');
+            setTimeout(function(){
+                modalPalabra.classList.remove('animacionEjeY');
+                document.documentElement.style.setProperty('--valorInicialY', '0')
+                document.documentElement.style.setProperty('--valorFinalY', '-290%')
+            }, 1000)
+        }
         else
             crearInterfazJuego()
     }else if(elemento.matches('input')){
@@ -157,7 +174,7 @@ container.addEventListener('click', function(e){
             }
 
         }else{
-            elemento.style.backgroundColor = "crimson"
+            elemento.style.backgroundColor = "rgba(220, 20, 60, 0.65)"
             contadorImg--
 
             if(contadorImg == 0){
