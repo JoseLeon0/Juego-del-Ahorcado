@@ -8,8 +8,6 @@
 :root{
     --valorInicialY: -150%;
     --valorFinalY: 0;
-    --valorInicialX: 0;
-    --valorFinalX: 200%;
 }
 
 body{
@@ -38,6 +36,7 @@ input{
     width: 30px;
     border: none;
     border-radius: 5px;
+    font-family: inherit;
 }
 
 button{
@@ -48,15 +47,16 @@ button{
     color: inherit;
     border-radius: 10px;
     background-color: rgb(0, 100, 147);
-    transition: background-color .5s;
+    font-family: inherit;
+    transition: background-color .5s, transform .5s;
 
     &:hover{
         background-color: rgb(0, 100, 187);
+        transform: scale(1.2);
     }
 }
 
-input, button{
-    font-family: inherit;
+input:not(.input__word), button{
     cursor: pointer;
 }
 
@@ -126,6 +126,10 @@ dialog{
     }
 }
 
+.close__modal{
+    margin-top: 1rem;
+}
+
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.39);
 }
@@ -133,6 +137,23 @@ dialog::backdrop{
 @starting-style{
     .container{
         transform: translateY(-150%);
+    }
+}
+
+@media screen and (width >= 600px){
+    .container__word{
+        justify-content: center;
+    }
+
+    .container__keys{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 5px;
+
+        & input{
+            margin: unset
+        }
     }
 }
 

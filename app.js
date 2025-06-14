@@ -9,22 +9,29 @@ let contadorImg = 6
 
 let textosModal = {
     victoria : [
-        '¡Felicidades!', 'Has acertado la palabra' 
+        '¡Felicidades!', 'Has acertado la palabra', 'img/winner.webp', 'Victoria' 
     ], 
     derrota : [
-        '¡Oh no!', 'Mas suerte la proxima vez amig@'
+        '¡Oh no!', 'Mas suerte la proxima vez amig@', 'img/gameOver.png', 'Derrota'
     ]
 }
 
 //True -> Gana. False -> Pierde
 function creacionContenidoModalRespuesta(value){
+    const titulo = modalResultado.querySelector('h2')
+    const parrafo = modalResultado.querySelector('p')
     if(value){
-        modalResultado.querySelector('h2').textContent = textosModal.victoria[0]
-        modalResultado.querySelector('p').textContent = textosModal.victoria[1]
+        titulo.textContent = textosModal.victoria[0]
+        parrafo.textContent = textosModal.victoria[1]
+        modalResultado.querySelector('figure img').src = textosModal.victoria[2]
+        modalResultado.querySelector('figure img').alt = textosModal.victoria[3]
     }else{
-        modalResultado.querySelector('h2').textContent = textosModal.derrota[0]
-        modalResultado.querySelector('p').textContent = textosModal.derrota[1]
+        titulo.textContent = textosModal.derrota[0]
+        parrafo.textContent = textosModal.derrota[1]
+        modalResultado.querySelector('figure img').src = textosModal.derrota[2]
+        modalResultado.querySelector('figure img').alt = textosModal.derrota[3]
     }
+    parrafo.style.fontWeight = 'normal'
 }
 
 function crearInterfazJuego(palabraUser){
