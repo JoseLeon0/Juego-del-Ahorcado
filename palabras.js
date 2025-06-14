@@ -1,15 +1,25 @@
-let palabras = [
-    'perro', 
-    'aguila',
-    'python',
-    'jhon cena',
-    'black clover',
-    'frontend',
-    'jefe tribal',
-    'ronaldo',
-    'coscomatepec',
-    'madrid',
-    'liga mx'
+const palabras = [
+    "computadora",
+    "elefante",
+    "murcielago",
+    "astronauta",
+    "bicicleta",
+    "universo",
+    "jirafa",
+    "refrigerador",
+    "montaña",
+    "biblioteca",
+    "camaleon",
+    "tornillo",
+    "mariposa",
+    "escalera",
+    "telescopio",
+    "cascada",
+    "uriel valdivia",
+    "coscomatepec",
+    "informatica",
+    "java y javascript",
+    "españa madrid"
 ]
 
 function generarNumeroAleatorio(min, max) {
