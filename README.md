@@ -3,6 +3,7 @@
 El tradicional juego del Ahorcado, te puede tocar una palabra aleatoria o puedes ingresar tu propia palabra. Consiste en adiviar una palabra que esta oculta, si el usuario selecciona una letra que esta en la palabra se mostrara su posicion y se revelara; por otro lado si la letra no pertenece a la palabra el ahorcao iniciara a cambiar. Hay 6 intentos posibles para poder ganar.
 
 ## Link del sitio:
+https://joseleon0.github.io/Juego-del-Ahorcado/
 
 
 ## Menu
